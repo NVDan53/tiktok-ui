@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Tippy from '@tippyjs/react/headless';
 import classNames from 'classnames/bind';
 import { Wrapper as PopperWrapper } from "~/components/Popper"
@@ -8,22 +8,37 @@ import Header from './Header';
 
 let cx = classNames.bind(styles);
 
-const Menu = ({ children, items = [] }) => {
+const Menu = ({ children, items = [], onChange = () => { } }) => {
+
+    const [history, setHistory] = useState([{ data: items }])
+
+    const current = history[history.length - 1]
 
     const renderItems = () => {
-        return items.map(it => <MenuItem key={it.id} data={it} />)
+        return current.data.map(it => {
+            const isParent = !!it.children;
+
+            return <MenuItem key={it.id} data={it} onClick={() => {
+                if (isParent) {
+                    setHistory(pre => [...pre, it.children])
+                } else {
+                    onChange(it)
+                }
+            }} />
+        })
     }
 
     return (
         <Tippy
             interactive
-            visible
             delay={[0, 600]}
             placement='bottom-end'
             render={attrs => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>
-                        <Header title='Language' />
+                        {history.length > 1 && <Header title='Language' onBack={() => {
+                            setHistory(pre => pre.slice(0, pre.length - 1))
+                        }} />}
                         {renderItems()}
                     </PopperWrapper>
                 </div>

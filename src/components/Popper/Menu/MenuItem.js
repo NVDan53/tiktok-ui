@@ -7,8 +7,8 @@ import styles from './Menu.module.scss'
 
 let cx = classNames.bind(styles);
 
-function MenuItem({ data }) {
-    return <Button customClass={cx('menu-item')} leftIcon={data.icon} to={data.to}>{data.title}</Button>
+function MenuItem({ data, onClick }) {
+    return <Button customClass={cx('menu-item')} leftIcon={data.icon} to={data.to} handleBtn={onClick}>{data.title}</Button>
 }
 
 export default MenuItem

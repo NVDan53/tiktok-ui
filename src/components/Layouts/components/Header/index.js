@@ -18,7 +18,37 @@ const MENU_ITEMS = [
     {
         id: 1,
         icon: <FontAwesomeIcon icon={faEarthAsia} />,
-        title: "English"
+        title: "English",
+        children: {
+            title: 'Language',
+            data: [
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language1',
+                        data: [
+                            {
+                                type: 'language1',
+                                code: 'en',
+                                title: 'English1'
+                            },
+                            {
+                                type: 'language1',
+                                code: 'vi',
+                                title: 'Viet Nam1',
+                            }
+                        ]
+                    }
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Viet Nam',
+                }
+            ]
+        }
     },
     {
         id: 2,
@@ -42,6 +72,19 @@ const Header = () => {
         }, 0);
     }, []);
 
+    const handleMenuChange = (menuItem) => {
+        console.log(menuItem)
+        switch (menuItem.type) {
+            case 'language':
+                window.alert('Language')
+                break;
+            case 'language1':
+                window.alert('Language1')
+                break;
+            default:
+                break;
+        }
+    }
 
     return (
         <header className={cx('wrapper')}>
@@ -80,7 +123,7 @@ const Header = () => {
                     <Button text>Upload</Button>
                     <Button primary>Login</Button>
 
-                    <Menu items={MENU_ITEMS}>
+                    <Menu items={MENU_ITEMS} onChange={handleMenuChange}>
                         <button className={cx('more-btn')}>
                             <FontAwesomeIcon icon={faEllipsisVertical} />
                         </button>
