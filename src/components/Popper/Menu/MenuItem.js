@@ -8,7 +8,12 @@ import styles from './Menu.module.scss'
 let cx = classNames.bind(styles);
 
 function MenuItem({ data, onClick }) {
-    return <Button customClass={cx('menu-item')} leftIcon={data.icon} to={data.to} handleBtn={onClick}>{data.title}</Button>
+
+    const classes = cx('menu-item', {
+        'separate': data.separate
+    })
+
+    return <Button customClass={classes} leftIcon={data.icon} to={data.to} handleBtn={onClick}>{data.title}</Button>
 }
 
 export default MenuItem
