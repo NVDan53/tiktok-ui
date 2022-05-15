@@ -11,7 +11,7 @@ const Image = ({ src, fallBack: customFallBack = images.noImage, className, ...p
     }
 
     return (
-        <img className={classNames(styles.wrapper, className)} ref={ref} src={fallBack || src} {...props} onError={handleError} />
+        <img className={classNames(styles.wrapper, styles.userAvatar, className)} ref={ref} src={fallBack || src} {...props} onError={handleError} />
     )
 }
 
