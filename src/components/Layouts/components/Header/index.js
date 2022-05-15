@@ -3,6 +3,8 @@ import classNames from 'classnames/bind';
 import TippyHeadLess from '@tippyjs/react/headless';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark, faEllipsisVertical, faMagnifyingGlass, faSpinner, faEarthAsia, faCircleQuestion, faKeyboard, faCloudUpload, faUser, faCoins, faGear, faSignOut } from '@fortawesome/free-solid-svg-icons';
+import { ImEmbed2 } from "react-icons/im";
+import { IconContext } from "react-icons";
 
 import styles from './Header.module.scss';
 import images from '~/assets/images'
@@ -13,6 +15,8 @@ import Menu from '~/components/Popper/Menu';
 
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
+import { Inbox, Message, Upload } from '~/components/Icons';
+import Image from '~/components/Image'
 
 let cx = classNames.bind(styles);
 
@@ -93,6 +97,7 @@ const userMenu = [
 
 const Header = () => {
     const [searchResult, setSearchResult] = useState([]);
+    const ref = React.createRef();
 
     const currentUser = true;
 
@@ -117,6 +122,13 @@ const Header = () => {
         }
     }
 
+    const generateIcon = (icon, passProps) => {
+        return (
+            <IconContext.Provider value={passProps}>
+                {icon}
+            </IconContext.Provider>
+        )
+    }
 
     return (
         <header className={cx('wrapper')}>
@@ -158,24 +170,42 @@ const Header = () => {
                             <>
                                 <Tippy delay={[0, 200]} content={<span>Upload video</span>}>
                                     <button className={cx('action-btn')}>
-                                        <FontAwesomeIcon icon={faCloudUpload} />
+                                        <Upload />
                                     </button>
                                 </Tippy>
+
+                                <Tippy delay={[0, 200]} content={<span>Message</span>}>
+                                    <button className={cx('action-btn')}>
+                                        <Message width="2.6rem" height='2.6rem' />
+                                    </button>
+                                </Tippy>
+
+
+                                <Tippy delay={[0, 200]} content={<span>Inbox</span>}>
+                                    <button className={cx('action-btn')}>
+                                        <Inbox />
+                                    </button>
+                                </Tippy>
+
                             </>
                         ) : (
                             <>
                                 <Button text>Upload</Button>
                                 <Button primary>Login</Button>
-
-
                             </>
                         )
                     }
 
+
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {
                             currentUser ? (
-                                <img src={"https://p16-sign-va.tiktokcdn.com/musically-maliva-obj/1676623727098885~c5_720x720.jpeg?x-expires=1652713200&x-signature=dvaAJDMT7PDK3i6CHwaA3DmNXbM%3D"} className={cx('user-avatar')} alt="Avatar" />
+                                <Image ref={ref}
+                                    src={"ttps://p16-sign-va.tiktokcdn.com/musically-maliva-obj/1676623727098885~c5_720x720.jpeg?x-expires=1652713200&x-signature=dvaAJDMT7PDK3i6CHwaA3DmNXbM%3D"}
+                                    className={cx('user-avatar')}
+                                    alt="Avatar"
+                                    fallBack="https://static.fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg"
+                                />
                             ) : (
 
                                 <button className={cx('more-btn')}>
