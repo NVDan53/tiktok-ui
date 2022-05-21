@@ -7,6 +7,7 @@
 7. Dùng onError function để handle khi ảnh img bị lỗi
 8. Dùng display: flex để căn chỉnh height của element
 9. Đối với svg: để set color ăn theo color bên ngoài thì dùng thuộc tính: fill="currentColor"
+10. Use encodeURIComponent khi search query param
 
 > Handle logic search
 - Search debounce : 2s mới search
@@ -15,3 +16,7 @@
 - Khi clear text (nhấn button [x]): vẫn focus vô ô input search
 - Khi search có kết quả: bấm blur ra ngoài -> nhấp vô lại ô input search -> vẫn có kết quả tìm kiếm như lúc search
 - Khi nhấn search thì qua trang kết quả tìm kiếm
+
+
+# API
+- https://tiktok.fullstack.edu.vn/api/users/search?q=hoaa&type=less

@@ -7,21 +7,22 @@ import Image from '~/components/Image'
 
 const cx = classNames.bind(styles);
 
-function AccountItem() {
+function AccountItem({ data: { avatar, full_name, nickname, tick, ...rest } }) {
+
     return (
         <div className={cx('wrapper')}>
             <Image
                 className={cx('avatar')}
-                src="https://p16-sign-va.tiktokcdn.com/tos-useast2a-avt-0068-giso/9366bed55819a1889d53ff3a508c766b~c5_300x300.webp?x-expires=1652176800&x-signature=NLELqKWDvqBVCrKdoTPmIp3WBIo%3D"
-                alt="Hoaa"
+                src={avatar}
+                alt={nickname}
                 fallBack="https://static.fullstack.edu.vn/static/media/fallback-avatar.155cdb2376c5d99ea151.jpg"
             />
             <div className={cx('info')}>
                 <h4 className={cx('name')}>
-                    <span>Nguyen Van A</span>
-                    <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />
+                    <span>{full_name}</span>
+                    {tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
                 </h4>
-                <span className={cx('username')}>nguyenvana</span>
+                <span className={cx('username')}>{nickname}</span>
             </div>
         </div>
     );

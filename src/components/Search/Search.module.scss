@@ -63,6 +63,20 @@
         cursor: pointer;
 
     }
+
+    .loading {
+        animation: spinner .8s infinite linear;
+    }
+
+
+    @keyframes spinner {
+        to {
+            transform: translateY(-50%) rotate(360deg);
+        }
+    }
+
+
+
     .search-button {
 
         display: flex;

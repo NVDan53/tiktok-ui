@@ -13,15 +13,27 @@ const cx = classNames.bind(styles)
 function Search() {
     const [searchResult, setSearchResult] = useState([]);
     const [searchValue, setSearchValue] = useState('');
-    const [showResult, setShowResult] = useState(true)
+    const [showResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(false)
 
     const inputRef = useRef();
 
     useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1, 2, 3, 4]);
-        }, 0);
-    }, []);
+        if (!searchValue.trim()) {
+            setSearchResult([])
+            return
+        };
+
+        setLoading(true);
+
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+            .then(response => response.json())
+            .then(data => {
+                setSearchResult(data.data)
+                setLoading(false)
+            });
+
+    }, [searchValue]);
 
     const handleClear = () => {
         setSearchValue('');
@@ -41,10 +53,12 @@ function Search() {
                 <div className={cx('search-result')} tabIndex="-1" {...attrs}>
                     <PopperWrapper>
                         <h4 className={cx('search-title')}>Accounts</h4>
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
-                        <AccountItem />
+                        {
+                            searchResult.map(data =>
+                                <AccountItem key={data.id} data={data} />
+                            )
+                        }
+
                     </PopperWrapper>
                 </div>
             )}
@@ -57,7 +71,7 @@ function Search() {
                 />
 
                 {
-                    !!searchValue && (
+                    !!searchValue && !loading && (
                         <button className={cx('clear')} onClick={handleClear}>
                             <FontAwesomeIcon icon={faCircleXmark} />
                         </button>
@@ -65,7 +79,7 @@ function Search() {
                 }
 
 
-                {/* <FontAwesomeIcon icon={faSpinner} className={cx('loading')} /> */}
+                {loading && <FontAwesomeIcon icon={faSpinner} className={cx('loading')} />}
 
                 <button className={cx('search-button')}>
                     <SearchIcon />
