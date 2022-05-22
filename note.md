@@ -8,6 +8,7 @@
 8. Dùng display: flex để căn chỉnh height của element
 9. Đối với svg: để set color ăn theo color bên ngoài thì dùng thuộc tính: fill="currentColor"
 10. Use encodeURIComponent khi search query param
+11. debounce là kĩ thuật buộc 1 hàm phải đợi một thời gian mới được thực thi
 
 > Handle logic search
 - Search debounce : 2s mới search

@@ -8,6 +8,8 @@ import classNames from 'classnames/bind';
 import styles from './Search.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { useDebounce } from '~/hooks';
+
 const cx = classNames.bind(styles)
 
 function Search() {
@@ -17,6 +19,8 @@ function Search() {
     const [loading, setLoading] = useState(false)
 
     const inputRef = useRef();
+
+    const debouceValue = useDebounce(searchValue, 500)
 
     useEffect(() => {
         if (!searchValue.trim()) {
@@ -33,7 +37,7 @@ function Search() {
                 setLoading(false)
             });
 
-    }, [searchValue]);
+    }, [debouceValue]);
 
     const handleClear = () => {
         setSearchValue('');
