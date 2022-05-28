@@ -7,8 +7,11 @@ import { SearchIcon } from '~/components/Icons';
 import classNames from 'classnames/bind';
 import styles from './Search.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import * as requestAPI from "~/utils/request"
+import { search } from '~/services/searchService';
 
 import { useDebounce } from '~/hooks';
+
 
 const cx = classNames.bind(styles)
 
@@ -30,12 +33,15 @@ function Search() {
 
         setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
-            .then(response => response.json())
-            .then(data => {
-                setSearchResult(data.data)
-                setLoading(false)
-            });
+        const fetchAPI = async () => {
+
+            const response = await search('users/search', encodeURIComponent(searchValue))
+
+            setSearchResult(response.data)
+            setLoading(false)
+        }
+
+        fetchAPI();
 
     }, [debouceValue]);
 
