@@ -9,6 +9,7 @@
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .inner {
@@ -20,14 +21,15 @@
     justify-content: space-between;
 }
 
-
+.logo-link {
+    display: flex;
+}
 
 // Actions
 .actions {
     display: flex;
     align-items: center;
 }
-
 
 .more-btn {
     margin-left: 24px;
@@ -41,7 +43,7 @@
     color: #161823;
     background-color: transparent;
     padding: 4px 10px;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .badge {
@@ -55,7 +57,6 @@
     font-size: 1.4rem;
     font-weight: 600;
     color: var(--white);
-    font-family: 'ProximaNova', sans-serif;
+    font-family: var(--font-family);
     background-color: var(--primary);
 }
-

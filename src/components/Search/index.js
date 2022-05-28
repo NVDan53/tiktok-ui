@@ -23,10 +23,10 @@ function Search() {
 
     const inputRef = useRef();
 
-    const debouceValue = useDebounce(searchValue, 500)
+    const debouceValue = useDebounce(searchValue.trim(), 500)
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debouceValue.trim()) {
             setSearchResult([])
             return
         };
@@ -35,7 +35,7 @@ function Search() {
 
         const fetchAPI = async () => {
 
-            const response = await search('users/search', encodeURIComponent(searchValue))
+            const response = await search('users/search', encodeURIComponent(debouceValue))
 
             setSearchResult(response.data)
             setLoading(false)
@@ -53,6 +53,15 @@ function Search() {
 
     const handleHideResult = () => {
         setShowResult(false)
+    }
+
+    const handleOnChange = (e) => {
+        const searchValue = e.target.value;
+
+        if (searchValue.startsWith(" ")) return;
+
+        setSearchValue(searchValue);
+
     }
 
     return (
@@ -75,8 +84,8 @@ function Search() {
             onClickOutside={handleHideResult}
         >
             <div className={cx('search')}>
-                <input ref={inputRef} placeholder='Search accounts and videos' spellCheck={false} value={searchValue}
-                    onChange={(e) => setSearchValue(e.target.value)}
+                <input className={cx('search-input')} ref={inputRef} placeholder='Search accounts and videos' spellCheck={false} value={searchValue}
+                    onChange={handleOnChange}
                     onFocus={() => setShowResult(true)}
                 />
 
@@ -91,7 +100,7 @@ function Search() {
 
                 {loading && <FontAwesomeIcon icon={faSpinner} className={cx('loading')} />}
 
-                <button className={cx('search-button')}>
+                <button className={cx('search-button')} onMouseDown={(e) => e.preventDefault()}>
                     <SearchIcon />
                 </button>
             </div>

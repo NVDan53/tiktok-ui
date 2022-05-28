@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Tippy from '@tippyjs/react';
 import classNames from 'classnames/bind';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import 'tippy.js/dist/tippy.css'; // optional
 import images from '~/assets/images';
 import Button from '~/components/Button';
@@ -10,6 +11,7 @@ import { Inbox, Message, Upload } from '~/components/Icons';
 import Image from '~/components/Image';
 import Menu from '~/components/Popper/Menu';
 import Search from '~/components/Search';
+import configRoutes from '~/config/configRoutes';
 import styles from './Header.module.scss';
 
 
@@ -113,7 +115,11 @@ const Header = () => {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <div className={cx('logo')}><img src={images.logo} alt="TikTok" /></div>
+                <div className={cx('logo')}>
+
+                    <Link className={cx('logo-link')} to={configRoutes.home}><img src={images.logo} alt="TikTok" /></Link>
+
+                </div>
 
                 {/* Search */}
                 <Search />
@@ -154,7 +160,7 @@ const Header = () => {
                     }
 
 
-                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
+                    <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange} hideOnClick='false'>
                         {
                             currentUser ? (
                                 <Image ref={ref}

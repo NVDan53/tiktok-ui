@@ -8,7 +8,7 @@ import Header from './Header';
 
 let cx = classNames.bind(styles);
 
-const Menu = ({ children, items = [], onChange = () => { } }) => {
+const Menu = ({ children, items = [], onChange = () => { }, hideOnClick = true }) => {
 
     const [history, setHistory] = useState([{ data: items }])
 
@@ -45,6 +45,7 @@ const Menu = ({ children, items = [], onChange = () => { } }) => {
                 </div>
             )}
             onHidden={() => setHistory(pre => pre.slice(0, 1))}
+            hideOnClick={false}
         >
             {children}
         </Tippy>
