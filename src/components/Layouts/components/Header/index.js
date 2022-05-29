@@ -51,6 +51,156 @@ const MENU_ITEMS = [
                     type: 'language',
                     code: 'vi',
                     title: 'Viet Nam',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language1',
+                        data: [
+                            {
+                                type: 'language1',
+                                code: 'en',
+                                title: 'English1'
+                            },
+                            {
+                                type: 'language1',
+                                code: 'vi',
+                                title: 'Viet Nam1',
+                            }
+                        ]
+                    }
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Viet Nam',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language1',
+                        data: [
+                            {
+                                type: 'language1',
+                                code: 'en',
+                                title: 'English1'
+                            },
+                            {
+                                type: 'language1',
+                                code: 'vi',
+                                title: 'Viet Nam1',
+                            }
+                        ]
+                    }
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Viet Nam',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language1',
+                        data: [
+                            {
+                                type: 'language1',
+                                code: 'en',
+                                title: 'English1'
+                            },
+                            {
+                                type: 'language1',
+                                code: 'vi',
+                                title: 'Viet Nam1',
+                            }
+                        ]
+                    }
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Viet Nam',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language1',
+                        data: [
+                            {
+                                type: 'language1',
+                                code: 'en',
+                                title: 'English1'
+                            },
+                            {
+                                type: 'language1',
+                                code: 'vi',
+                                title: 'Viet Nam1',
+                            }
+                        ]
+                    }
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Viet Nam',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language1',
+                        data: [
+                            {
+                                type: 'language1',
+                                code: 'en',
+                                title: 'English1'
+                            },
+                            {
+                                type: 'language1',
+                                code: 'vi',
+                                title: 'Viet Nam1',
+                            }
+                        ]
+                    }
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Viet Nam',
+                },
+                {
+                    type: 'language',
+                    code: 'en',
+                    title: 'English',
+                    children: {
+                        title: 'Language1',
+                        data: [
+                            {
+                                type: 'language1',
+                                code: 'en',
+                                title: 'English1'
+                            },
+                            {
+                                type: 'language1',
+                                code: 'vi',
+                                title: 'Viet Nam1',
+                            }
+                        ]
+                    }
+                },
+                {
+                    type: 'language',
+                    code: 'vi',
+                    title: 'Viet Nam',
                 }
             ]
         }

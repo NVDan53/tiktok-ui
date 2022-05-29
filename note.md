@@ -9,6 +9,8 @@
 9. Đối với svg: để set color ăn theo color bên ngoài thì dùng thuộc tính: fill="currentColor"
 10. Use encodeURIComponent khi search query param
 11. debounce là kĩ thuật buộc 1 hàm phải đợi một thời gian mới được thực thi
+12. [Trick]: dùng display flex đe làm content cua element fit, flex sẽ lam cho đo rong cua element con fit voi do rong cua element cha
+13. over-flow: overlay => nôi lên tren, khong chiêm dien tich 
 
 > Handle logic search
 - Search debounce : 2s mới search
